@@ -1,4 +1,4 @@
-async function init(waczFile, startingOrigin) {
+async function init(waczFile, startingOrigin, proxyTs) {
   const baseUrl = new URL(window.location);
   baseUrl.hash = "";
 
@@ -12,7 +12,8 @@ async function init(waczFile, startingOrigin) {
       "isLive": false,
       "baseUrl": baseUrl.href,
       "baseUrlHashReplay": true,
-      "proxyOrigin": new URL(startingOrigin).origin
+      "proxyOrigin": new URL(startingOrigin).origin,
+      "proxyTs": proxyTs
     },
   };
 

@@ -26,6 +26,7 @@ function createBanner() {
   b.style.top = "0px";
   b.style.width = "100%";
   b.style.height = "30px";
+  b.style.textAlign = "center";
   b.style.fontFamily = "system-ui; sans-serif";
   b.style.backgroundColor = "rgb(77, 124, 15)";
   b.style.color = "white";

@@ -10,9 +10,9 @@ This example is designed to work with a single-domain site.
 
 Here's how you can host a mirror of any site directly on GitHub pages!
 
-1) Create a new repo, using this site as a template!
-2) Add the WACZ file to this repo, if small enough, or host the WACZ file elsewhere, or use the Multi-WACZ JSON format. This is the same source that would be used with `<replay-web-page>`.
-3) Open [init.js](init.js) and fill in the path to WACZ file (or JSON containing multiple WACZ files) and the origin of the site to be replayed from the WACZ, and an optional timestamp. The values are provided as string parameters to init function:
+1) Click *Use this template* -> *Create a new repository* in GitHub to create your own repository from this template.
+3) Add the WACZ file to this repo, if small enough, or host the WACZ file elsewhere, or use the Multi-WACZ JSON format. This is the same source that would be used with `<replay-web-page>`.
+4) Open [init.js](init.js) and fill in the path to WACZ file (or JSON containing multiple WACZ files) and the origin of the site to be replayed from the WACZ, and an optional timestamp. The values are provided as string parameters to init function:
 
   ```js
   init(<path to WACZ or JSON source>, <origin of site to replay>, <optional timestamp>);

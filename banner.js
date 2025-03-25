@@ -17,7 +17,7 @@ function createBanner() {
 
   // check injected info for date string
   if (self.__wbinfo && self.__wbinfo.timestamp) {
-    dateStr = " from " + tsToDate(self.__wbinfo.timestamp).toLocaleString();
+    dateStr = " from " + new Date(self.__wbinfo.timestamp).toLocaleString();
   }
 
   const b = document.createElement("web-archive-banner");
@@ -41,32 +41,6 @@ function createBanner() {
 
   document.body.prepend(b);
   created = true;
-}
-
-function tsToDate(ts) {
-  if (!ts) {
-    return "";
-  }
-
-  if (ts.length < 14) {
-    ts += "00000101000000".substr(ts.length);
-  }
-
-  const datestr =
-    ts.substring(0, 4) +
-    "-" +
-    ts.substring(4, 6) +
-    "-" +
-    ts.substring(6, 8) +
-    "T" +
-    ts.substring(8, 10) +
-    ":" +
-    ts.substring(10, 12) +
-    ":" +
-    ts.substring(12, 14) +
-    "-00:00";
-
-  return new Date(datestr);
 }
 
 document.addEventListener("readystatechange", () => createBanner());

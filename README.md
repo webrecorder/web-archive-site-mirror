@@ -1,10 +1,11 @@
-# Mirror Web Site from Web Archive
+# How to Mirror any Web Site using Web Archives
 
-This template provides a starter to 'mirror' a website from a web archives, replacing a previously hosted on another (or same) domain.
+This template provides a starter to 'mirror' a website from web archives, replacing a previously hosted on another (or same) domain.
 
-Compared to regular web archive setup, this replaces a site, including preserving the link structure of the original site.
+Compared with traditional replay via ReplayWeb.page, this approach allows preserving the link structure of the original site and hosting the site on the original domain.
+Users may not even notice that the site has been replaced with a web archived powered mirror!
 
-This example is designed to work with a single-domain site.
+This example is designed to work with a single-domain site. (For more complex example that supports multiple subdomains that are interlinked, check out [GovArchive.us Replay](https://github.com/webrecorder/govarchive-replay))
 
 ### Usage
 

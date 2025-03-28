@@ -10,13 +10,14 @@ This example is designed to work with a single-domain site.
 
 Here's how you can host a mirror of any site directly on GitHub pages!
 
-1) Click *Use this template* -> *Create a new repository* in GitHub to create your own repository from this template.
+1) First, crawl the site you want to mirror, using [Browsertrix](https://webrecorder.net/browsertrix) or [Browsertrix Crawler](https://github.com/webrecorder/browsertrix-crawler) to get a WACZ file of your site.
+2) Click *Use this template* -> *Create a new repository* in GitHub to create your own repository from this template.
 3) Add the WACZ file to this repo, if small enough, or host the WACZ file elsewhere, or use the Multi-WACZ JSON format. This is the same source that would be used with `<replay-web-page>`.
 4) Open [init.js](init.js) and fill in the path to WACZ file (or JSON containing multiple WACZ files) and the origin of the site to be replayed from the WACZ, and an optional timestamp. The values are provided as string parameters to init function:
 
   ```js
   init(<path to WACZ or JSON source>, <origin of site to replay>, <optional timestamp>);
   ```
-4) Check locally with any webserver.
-5) Enable GitHub pages on this repo, and set a custom domain!
-6) Your web archive mirror should be loading when the site loads, after the service worker is initialized. The 404 handler should allow deep-linking directly, and will load the web archive from any page.
+5) Check locally with any webserver to make sure your site is running, eg. by running `http-server -p 8080`
+6) Enable GitHub pages on this repo, and set a custom domain, either a new mirror domain or even the original domain, if you have access to it.1
+7) Your web archive mirror should be loading when the site loads, after the service worker is initialized. The 404 handler should allow deep-linking directly, and will load the web archive from any page.

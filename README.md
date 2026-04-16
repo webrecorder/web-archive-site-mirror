@@ -25,6 +25,15 @@ Here's how you can host a mirror of any site directly on GitHub pages!
   ```js
   init("./my-archive.wacz", "https://my-site.example.com");
   ```
+
+  You can also initialize with a customizable options object, which includes additional options, such as overriding the home page to provide a custom index:
+  ```js
+  init({sourceUrl: "./my-archive.wacz", proxyOrigin: "https://my-site.example.com", proxyHomePageUrl: "./custom-index.html"})
+  ```
+
+  See [init.js](init.js) for a comprehensive list of options that can be set.
+
+
 5) Check locally with any webserver to make sure your site is running, eg. by running `http-server -p 8080` and then loading `http://localhost:8080`. This should serve the home page you archived from `https://my-site.example.com/` after the WACZ is loaded.
 6) Enable GitHub pages on this repo, and set a custom domain, either a new mirror domain or even the original domain, if you have access to it.
 7) Your web archive mirror should be loading when the site loads! The 404 handler should allow deep-linking directly, and will load the web archive starting from any page, so you can deep link to any existing page on the site!

@@ -8,7 +8,7 @@ async function init(sourceUrlOrOpts, originOpt, proxyTsOpt) {
 
   const { sourceUrl, proxyOrigin, proxyTs,
     notFoundTemplateUrl, excludeUrlPaths, allowProxyPaths,
-    allowProxyPassthrough, proxyHomePageUrl, proxyCustomInsert
+    allowProxyPassthrough, proxyHomePageUrl, proxyBannerUrl, proxyCustomInsert
   } = sourceUrlOrOpts;
 
   const msg = {
@@ -23,7 +23,7 @@ async function init(sourceUrlOrOpts, originOpt, proxyTsOpt) {
       "baseUrlHashReplay": true,
       "proxyOrigin": new URL(proxyOrigin).origin,
       "proxyTs": proxyTs,
-      "proxyBannerUrl": "banner.js",
+      "proxyBannerUrl": proxyBannerUrl || "banner.js",
       "excludeUrlPaths": excludeUrlPaths,
       "proxyHomePageUrl": proxyHomePageUrl,
       "proxyCustomInsert": proxyCustomInsert

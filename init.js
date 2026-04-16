@@ -17,9 +17,11 @@
 
 //   proxyHomePageUrl: "./homepage.html" // override the home page/index.html with custom HTML loaded from this file. Can be overridden ./index.html to show a custom index without loading the web archive
 
+//   proxyBannerUrl: "banner.js" // custom banner script, defaults to 'banner.js'
+
 //   proxyCustomInsert: `<script>
 //    // do something here
-//   </script>`, // insert custom HTML into each rendered page
+//   </script>`, // insert custom HTML into each rendered page <head> directly after the banner script
 //
 
 // })

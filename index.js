@@ -1,6 +1,15 @@
-async function init(sourceUrl, startingOrigin, proxyTs) {
+async function init(sourceUrlOrOpts, originOpt, proxyTsOpt) {
   const baseUrl = new URL(window.location);
   baseUrl.hash = "";
+
+  if (typeof(sourceUrlOrOpts) === "string") {
+    sourceUrlOrOpts = {sourceUrl: sourceUrlOrOpts, proxyOrigin: originOpt, proxyTs: proxyTsOpt};
+  }
+
+  const { sourceUrl, proxyOrigin, proxyTs,
+    notFoundTemplateUrl, excludeUrlPaths, allowProxyPaths,
+    allowProxyPassthrough, proxyHomePageUrl, proxyBannerUrl, proxyCustomInsert
+  } = sourceUrlOrOpts;
 
   const msg = {
     msg_type: "addColl",
@@ -12,9 +21,12 @@ async function init(sourceUrl, startingOrigin, proxyTs) {
       "isLive": false,
       "baseUrl": baseUrl.href,
       "baseUrlHashReplay": true,
-      "proxyOrigin": new URL(startingOrigin).origin,
+      "proxyOrigin": new URL(proxyOrigin).origin,
       "proxyTs": proxyTs,
-      "proxyBannerUrl": "banner.js",
+      "proxyBannerUrl": proxyBannerUrl || "banner.js",
+      "excludeUrlPaths": excludeUrlPaths,
+      "proxyHomePageUrl": proxyHomePageUrl,
+      "proxyCustomInsert": proxyCustomInsert
     },
   };
 
@@ -25,7 +37,26 @@ async function init(sourceUrl, startingOrigin, proxyTs) {
     return;
   }
 
-  await navigator.serviceWorker.register("/sw.js?root=proxyreplay&proxyOriginMode=1", {scope});
+  const params = new URLSearchParams();
+  params.set("root", "proxyreplay");
+  params.set("proxyOriginMode", "1");
+
+  // custom not found template URL
+  if (notFoundTemplateUrl) {
+    params.set("notFoundTemplateUrl", notFoundTemplateUrl);
+  }
+
+  // allow URL path prefixes to be loaded from live web (outside the archive)
+  if (allowProxyPaths) {
+    params.set("allowProxyPaths", allowProxyPaths.join(","));
+  }
+
+  // allow proxying without https://wabac.js/proxy/ prefix as a 'passthrough' above URLs
+  if (allowProxyPassthrough) {
+    params.set("allowProxyPassthrough", "1");
+  }
+
+  await navigator.serviceWorker.register("/sw.js?" + params.toString(), {scope});
 
   await new Promise((resolve) => {
     if (!navigator.serviceWorker.controller) {
